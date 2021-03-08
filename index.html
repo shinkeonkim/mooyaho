@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무야호!</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'BMJUA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+    <body>
+        <main id="app" class="text-center bg-dark h-100 w-100" style="min-height: 800px;">
+            <h2 class="p-3 mudo">
+                무야~호~
+            </h2>
+            <h5 class="mudo">그만큼 신나시는거지</h5>
+            <canvas id ="canvas" width="500" height="500" style="border:1px solid #BBB;" v-insert-message="mooyaho"></canvas>
+            <br>
+            <input type="text" v-model="mooyaho" />
+        </main>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script>
+            var imgMooyaho = new Image();
+            var moohaho_text = "무야~ 호~"
+            
+            window.onload = function() {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                var text_x = 250;
+                var text_y = 450;
+                ctx.drawImage(imgMooyaho, 0,0,500,500);
+                ctx.fillStyle = "red";
+                ctx.strokeStyle = "white";
+                ctx.strokeText(moohaho_text, text_x, text_y);
+                ctx.lineWidth = 2;
+                ctx.textAlign = "center";
+                ctx.font = "bold 65px BMJUA";
+                ctx.fillText(moohaho_text, text_x, text_y);
+                
+            }
+
+            imgMooyaho.src="img/mooyaho.jpg"
+
+            var app2 = new Vue({
+                el: '#app',
+                data: {
+                    "mooyaho": "무야~ 호~"
+                },
+                directives: {
+                    insertMessage: function(canvasElement, binding) {
+                        var ctx = canvasElement.getContext("2d");
+                        var text_x = 250;
+                        var text_y = 450;
+                        ctx.drawImage(imgMooyaho, 0,0,500,500);
+                        ctx.fillStyle = "red";
+                        ctx.strokeStyle = "white";
+                        ctx.strokeText(binding.value, text_x, text_y);
+                        ctx.lineWidth = 2;
+                        ctx.textAlign = "center";
+                        ctx.font = "bold 65px BMJUA";
+                        ctx.fillText(binding.value, text_x, text_y);
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
